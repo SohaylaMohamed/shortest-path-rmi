@@ -1,0 +1,7 @@
+import java.rmi.Remote;
+
+public interface IGraph extends Remote{
+	void addEdge(int src, int dst);
+	void removeEdge (int src, int dst);
+	int getShortestPath(int src, int dst);
+}

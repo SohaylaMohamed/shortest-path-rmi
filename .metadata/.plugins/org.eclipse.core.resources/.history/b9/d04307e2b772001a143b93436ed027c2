@@ -1,0 +1,23 @@
+import java.rmi.Naming;
+import java.util.Scanner;
+
+
+public class Client {
+
+	public static void main(String[] args) {
+		try {
+			IGraph h = (IGraph) Naming.lookup("rmi://192.168.1.109/9858/hello");
+			 while (true) {
+				 Scanner input = new java.util.Scanner(System.in);
+				 System.out.println("Please enter x and y");
+				 int x = input.nextInt();
+				 int y = input.nextInt();
+				 h.printGraph();
+				 System.out.println(h.getShortestPath(x, y));
+			 }
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}

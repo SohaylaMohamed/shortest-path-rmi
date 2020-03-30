@@ -1,0 +1,16 @@
+import java.rmi.Naming;
+
+public class Server {
+
+	public static void main(String[] args) {
+		try {
+			Graph g = new Graph();
+			Naming.rebind("rmi://192.168.1.109/20021/hello", g);
+			System.out.println("Ok");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+}

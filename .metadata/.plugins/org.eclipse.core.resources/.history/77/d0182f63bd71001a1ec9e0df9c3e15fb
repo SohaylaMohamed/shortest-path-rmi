@@ -1,0 +1,26 @@
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+public class Graph  extends UnicastRemoteObject implements IGraph, Serializable{
+
+	protected Graph() throws RemoteException {
+		super();
+	}
+
+	@Override
+	public void addEdge(int src, int dst) {
+				
+	}
+
+	@Override
+	public void removeEdge(int src, int dst) {
+		
+	}
+
+	@Override
+	public int getShortestPath(int src, int dst) {
+		return 0;
+	}
+
+}
