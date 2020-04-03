@@ -1,0 +1,50 @@
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.concurrent.TimeUnit;
+
+public class ClientClass extends UnicastRemoteObject implements Serializable, ClientInterface {
+	
+	Graph g = new Graph();
+	
+	protected ClientClass() throws RemoteException {
+
+	}
+
+	@Override
+	public String executeQuery(String query) {
+		Thread q = new QueryExecutor("query");
+		q.start();
+		try {
+			q.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(((QueryExecutor)q).val);
+		return "";
+	}
+
+	class QueryExecutor extends Thread {
+		public String val = "old value";
+		
+		String query;
+		
+		public QueryExecutor(String query) {
+			this.query=query;
+		}
+		
+		
+		@Override 
+		public void run() {
+			try {
+				System.out.println("New client received");
+				TimeUnit.SECONDS.sleep(10);
+				val = "New val";
+				System.out.println("Function executed!");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
