@@ -11,6 +11,7 @@ public class Server{
 	public static void main(String[] args) {
 		try {
 			ClientClass g = new ClientClass();
+			System.out.println("R\n");
 			Naming.rebind("rmi://localhost/4116/hello", g);
 			System.out.println("Ok");
 		} catch (Exception e) {

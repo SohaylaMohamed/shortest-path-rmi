@@ -18,7 +18,7 @@ public class ClientClass extends UnicastRemoteObject implements Serializable, Cl
     static Semaphore rm = new Semaphore(1);
     static Semaphore wm = new Semaphore(1);
     volatile static int rc = 0;
-    boolean ready = false;
+    
 	protected ClientClass() throws RemoteException {
 		try {
             List<String> allLines = Files.readAllLines(Paths.get("input.txt"));
@@ -29,7 +29,6 @@ public class ClientClass extends UnicastRemoteObject implements Serializable, Cl
                             Integer.parseInt(Character.toString(parts[2])));
                 }
             }
-            ready = true;
             System.out.println("Ready");
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,11 +109,5 @@ public class ClientClass extends UnicastRemoteObject implements Serializable, Cl
 				e.printStackTrace();
 			}
 		}
-	}
-
-	@Override
-	public boolean isReady() throws RemoteException {
-		
-		return ready;
 	}
 }
