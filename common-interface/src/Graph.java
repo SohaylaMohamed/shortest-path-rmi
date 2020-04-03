@@ -1,47 +1,47 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 
-public class Graph  extends UnicastRemoteObject implements IGraph, Serializable{
-	
-	HashMap<Integer, ArrayList<Integer>> g = new HashMap<Integer, ArrayList<Integer>>();
-	HashSet<Integer> edges = new HashSet<Integer>();
+public class Graph extends UnicastRemoteObject implements IGraph, Serializable {
+
+	private int v = 100;
+	private LinkedList<Integer> adj[];
+
 	public Graph() throws RemoteException {
-		super();
-		g = new HashMap<Integer, ArrayList<Integer>>();
-		edges = new HashSet<Integer>();
+		adj = new LinkedList[v];
+		for (int i = 0; i < v; i++) {
+			adj[i] = new LinkedList();
+		}
 	}
 
 	@Override
-	public void addEdge(int src, int dst) {
-		System.out.println("Adding edge");
-		//g.get(src).add(dst);
-		edges.add(src);
-		edges.add(dst);
+	public void addEdge(int v, int w) {
+		adj[v].add(w);
+	}
+
+	LinkedList<Integer> getEdges(int v) {
+		return adj[v];
 	}
 
 	@Override
-	public void removeEdge(int src, int dst) {
-		g.get(src).remove(dst);
+	public void removeEdge(int v, int w) {
+		adj[v].remove(adj[v].indexOf(w));
 	}
 
 	@Override
 	public int getShortestPath(int src, int dst) {
-		System.out.println(edges.size());
-		int sum = 0;
-		for (Integer n: edges) {
-			sum += n;
-		}
-		return sum;
+		int shortest = ShortestPath.findShortestPath(this, src, dst, 0);
+        return shortest;
 	}
-
-	@Override
-	public void printGraph() {
-		System.out.println("Graph is");
-		System.out.println(edges);
-	}
-
+	
+	
 }

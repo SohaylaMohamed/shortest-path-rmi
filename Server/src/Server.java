@@ -12,7 +12,7 @@ public class Server{
 	public static void main(String[] args) {
 		try {
 			Graph g = new Graph();
-			Naming.rebind("rmi://localhost/9858/hello", g);
+			Naming.rebind("rmi://localhost/4116/hello", g);
 			System.out.println("Ok");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

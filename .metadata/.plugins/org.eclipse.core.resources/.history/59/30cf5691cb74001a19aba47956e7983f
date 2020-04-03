@@ -1,0 +1,30 @@
+import java.rmi.Naming;
+import java.util.Scanner;
+
+public class Client {
+
+	public static void main(String[] args) {
+		try {
+			IGraph h = (IGraph) Naming.lookup("rmi://192.168.43.102/27955/hello");
+			while (true) {
+				Scanner input = new java.util.Scanner(System.in);
+				String command = "A";
+				command = input.next();
+				System.out.println("Please enter x and y");
+				int x = input.nextInt();
+				int y = input.nextInt();
+				if (command == "A") {
+					h.addEdge(x, y);
+				} else if (command == "D") {
+					h.removeEdge(x, y);
+				} else {
+					System.out.println(h.getShortestPath(x, y));
+				}
+				System.out.println(h.getShortestPath(x, y));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
