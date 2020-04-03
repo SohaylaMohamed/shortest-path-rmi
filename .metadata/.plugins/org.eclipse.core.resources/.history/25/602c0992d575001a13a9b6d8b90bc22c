@@ -1,0 +1,8 @@
+import java.io.File;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface ClientInterface extends Remote{
+	int executeQuery(File query) throws RemoteException;
+	boolean isReady() throws RemoteException;
+}

@@ -36,7 +36,7 @@ public class ShortestPath {
             }
             traversedNodes.remove(node1);
         }
-        return minLen - 1;
+        return minLen;
     }
 
     static int getResult(int i) {
