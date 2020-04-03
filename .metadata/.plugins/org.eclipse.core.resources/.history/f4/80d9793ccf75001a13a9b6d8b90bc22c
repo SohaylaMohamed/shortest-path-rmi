@@ -12,8 +12,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class ClientClass extends UnicastRemoteObject implements Serializable, ClientInterface {
-
-	private static final long serialVersionUID = 1L;
+	
 	Graph g = new Graph();
     static Semaphore rm = new Semaphore(1);
     static Semaphore wm = new Semaphore(1);
